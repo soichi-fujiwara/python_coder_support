@@ -34,8 +34,8 @@ def post():
         df_sort_jun2 = ""
         
         df_name = "df"
-        df_sort_col1 = request.form['name'] + "1"
-        df_sort_col2 = request.form['name'] + "2"
+        p_sort_col1 = request.form['name'] + "1"
+        p_sort_col2 = request.form['name'] + "2"
 
         #0:昇順/1:降順
         df_sort_jun1 = "True" if p_sort_jun1 == 0 else "False"
