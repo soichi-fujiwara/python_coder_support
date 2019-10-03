@@ -41,7 +41,7 @@ def post():
         df_sort_jun1 = "True" if p_sort_jun1 == 0 else "False"
         df_sort_jun2 = "True" if p_sort_jun2 == 0 else "False"
 
-        if df_sort_col1 != "" and df_sort_col2 != "":
+        if p_sort_col1 != "" and p_sort_col2 != "":
           ret_code = "df_sort = {}.sort_values(['{}', '{}'], ascending=[{}, {}])".format(df_name,p_sort_col1,p_sort_col2,p_sort_jun1,p_sort_jun2)
         else:
           ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,p_sort_col2)
