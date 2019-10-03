@@ -30,7 +30,9 @@ def post():
     if request.method == 'POST':
 
         ret_code = ""
-
+        df_sort_jun1 = 0
+        df_sort_jun2 = ""
+        
         df_name = "df"
         df_sort_col1 = request.form['name'] + "1"
         df_sort_col2 = request.form['name'] + "2"
