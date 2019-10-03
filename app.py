@@ -30,6 +30,7 @@ def post():
     if request.method == 'POST':
 
         ret_code = ""
+        name = "名前"
         p_sort_jun1 = 0
         p_sort_jun2 = ""
         
