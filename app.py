@@ -2,11 +2,6 @@
 
 from flask import Flask, render_template, request, redirect, url_for
 import numpy as np
-import pickle
-from gensim.models import KeyedVectors
-
-#対義語生成
-import lib_wordRevChange as lw
 
 
 app = Flask(__name__)
@@ -34,50 +29,25 @@ def post():
     
     if request.method == 'POST':
 
-        rev_word = ""
-        words = request.form['name']
+        ret_code = ""
 
-        #TEST------------------------------------------------------------
-        from google.cloud import storage as gcs
-        import pandas as pd
+        df_name = "df"
+        df_sort_col1 = request.form['name'] + "1"
+        df_sort_col2 = request.form['name'] + "2"
 
-        bucket_name = 'ml_bucket_01'
-        fname = 'wiki_tohoku_pkl.sav'
-        #fname = 'sample.txt'
-        project_name = 'My First Project'
+        #0:昇順/1:降順
+        df_sort_jun1 = "True" if p_sort_jun1 == 0 else "False"
+        df_sort_jun2 = "True" if p_sort_jun2 == 0 else "False"
 
-        #プロジェクト名を指定してclientを作成
-        client = gcs.Client(project_name)
-
-        #バケット名を指定してbucketを取得
-        bucket = client.get_bucket(bucket_name)
-
-        #Blobを作成
-        blob = gcs.Blob(fname, bucket)
-        #content = blob.download_as_string()
-        model = blob.download_as_string()
-
-        #**************************************************************************
-        #model rorded check
-        #**************************************************************************
-        #read model #1
-        #model_dir = 'https://storage.cloud.google.com/ml_bucket_01/wiki_tohoku.model?hl=ja&walkthrough_tutorial_id=python_gae_quickstart'
-        #model = KeyedVectors.load(model_dir)
-        #read model #2
-        #model = pickle.load(open('gs://ml_bucket_01/wiki_tohoku_pkl.sav', 'rb'))
-
-        #MAIN
-        words = words[0:15]
-        gyaku = u"逆"
-        inherent_words = '[' + words + ']'
-
-        rev_list = lw.wordRevChange(words,gyaku,inherent_words,model)
-        rev_word = rev_list[1]
-        #TEST------------------------------------------------------------
+        if df_sort_col1 <> "" and df_sort_col2 <> "":
+          ret_code = "df_sort = {}.sort_values(['{}', '{}'], ascending=[{}, {}])".format(df_name,p_sort_col1,p_sort_col2,p_sort_jun1,p_sort_jun2)
+        else:
+          ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,p_sort_col2)
         
-        name = request.form['name']
+        #TEST------------------------------------------------------------
         return render_template('index.html',
-                               name=name, title=title,rev_word=rev_word)
+                               name=name, title=title,ret_code=ret_code)
+        #TEST------------------------------------------------------------
     else:
         return redirect(url_for('index'))
 
