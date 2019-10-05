@@ -38,8 +38,11 @@ def post():
         p_sort_jun1 = request.form['df_sort']
 
         #0:昇順/1:降順
-        sort_val = "True" if p_sort_jun1 == 0 else "False"
-
+        if p_sort_jun1 == 0: 
+          sort_val = "True"
+        else:
+          sort_val = "False"
+            
         ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,sort_val)
         
         #TEST------------------------------------------------------------
