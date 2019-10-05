@@ -29,23 +29,18 @@ def post():
     
     if request.method == 'POST':
 
-        ret_code = ""
-        name = "名前"
-        p_sort_jun1 = 0
-        p_sort_jun2 = ""
-        
-        df_name = "df"
-        p_sort_col1 = request.form['name'] + "1"
-        p_sort_col2 = request.form['name'] + "2"
+		name = "名前"
+
+		ret_code = ""
+		df_name = request.form['df_name']
+
+		p_sort_col1 = request.form['df_column']
+		p_sort_jun1 = request.form['df_sort']
 
         #0:昇順/1:降順
-        df_sort_jun1 = "True" if p_sort_jun1 == 0 else "False"
-        df_sort_jun2 = "True" if p_sort_jun2 == 0 else "False"
+        sort_val = "True" if p_sort_jun1 == 0 else "False"
 
-        if p_sort_col1 != "" and p_sort_col2 != "":
-          ret_code = "df_sort = {}.sort_values(['{}', '{}'], ascending=[{}, {}])".format(df_name,p_sort_col1,p_sort_col2,p_sort_jun1,p_sort_jun2)
-        else:
-          ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,p_sort_col2)
+        ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,sort_val)
         
         #TEST------------------------------------------------------------
         return render_template('index.html',

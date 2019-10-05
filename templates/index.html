@@ -14,9 +14,17 @@
           {% endif %}
         </p>
         <form action="/post" method="post" class="form-inline">
-          <label for="name">名前</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-          <button type="submit" class="btn btn-default">送信する</button>
+			<label for="name">データフレーム名</label>
+			<input type="text" class="form-control" id="df_name" name="df_name" placeholder="df_name">
+			の列名
+			<input type="text" class="form-control" id="df_column" name="df_column" placeholder="column_name">
+			を
+			<select name="df_sort" size="1">
+			<option value="0">昇順</option>
+			<option value="1">降順</option>
+			</select>
+			に並び替える。
+          <button type="submit" class="btn btn-default">Coder</button>
         </form>
         {{ ret_code }}
       </div>
