@@ -29,13 +29,13 @@ def post():
     
     if request.method == 'POST':
 
-		name = "名前"
+        name = "名前"
 
-		ret_code = ""
-		df_name = request.form['df_name']
+        ret_code = ""
+        df_name = request.form['df_name']
 
-		p_sort_col1 = request.form['df_column']
-		p_sort_jun1 = request.form['df_sort']
+        p_sort_col1 = request.form['df_column']
+        p_sort_jun1 = request.form['df_sort']
 
         #0:昇順/1:降順
         sort_val = "True" if p_sort_jun1 == 0 else "False"
