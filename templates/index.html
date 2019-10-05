@@ -13,11 +13,21 @@
             {{ message }}
           {% endif %}
         </p>
-          <form action="/post" method="post" onsubmit="doSomething();return false;" class="form-inline">
+          <form action="/post" method="post" class="form-inline">
           データフレーム名
-          <input type="text" class="form-control" id="df_name" name="df_name" placeholder="df_name">
+          <input type="text" 
+                 class="form-control" 
+                 id="df_name" 
+                 name="df_name" 
+                 placeholder="df_name" 
+                 text="{% if sv_df_name %}{{sv_df_name}}{%endif%}">
           の列名
-          <input type="text" class="form-control" id="df_column" name="df_column" placeholder="column_name">
+          <input type="text" 
+                 class="form-control" 
+                 id="df_column" 
+                 name="df_column" 
+                 placeholder="column_name" 
+                 text="{% if sv_column_name %}{{sv_column_name}}{%endif%}">
           を
           <select name="df_sort" size="1">
           <option value="0">昇順</option>
