@@ -32,6 +32,9 @@ def post():
         name = "名前"
 
         ret_code = ""
+        sv_df_name = ""
+        sv_column_name = ""
+        
         df_name = request.form['df_name']
 
         p_sort_col1 = request.form['df_column']
@@ -45,10 +48,10 @@ def post():
           sort_val = "False"
             
         ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,sort_val)
-        
+                
         #TEST------------------------------------------------------------
         return render_template('index.html',
-                               name=name, title=title,ret_code=ret_code)
+                               name=name, title=title,sv_df_name=df_name,sv_column_name=p_sort_col1,ret_code=ret_code)
         #TEST------------------------------------------------------------
     else:
         return redirect(url_for('index'))
