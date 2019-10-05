@@ -35,13 +35,14 @@ def post():
         df_name = request.form['df_name']
 
         p_sort_col1 = request.form['df_column']
-        p_sort_jun1 = request.form['df_sort']
+        p_sort_jun1 = request.form.getlist['df_sort']
 
         #0:昇順/1:降順
-        if p_sort_jun1 == 0: 
-          sort_val = "True"
-        else:
-          sort_val = "False"
+        sort_val = p_sort_jun1
+        #if p_sort_jun1 == 0: 
+        #  sort_val = "True"
+        #else:
+        #  sort_val = "False"
             
         ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,sort_val)
         
