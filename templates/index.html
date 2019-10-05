@@ -13,7 +13,7 @@
             {{ message }}
           {% endif %}
         </p>
-          <form action="/post" method="post" class="form-inline">
+          <form action="/post" method="post" onsubmit="doSomething();return false;" class="form-inline">
           データフレーム名
           <input type="text" class="form-control" id="df_name" name="df_name" placeholder="df_name">
           の列名
