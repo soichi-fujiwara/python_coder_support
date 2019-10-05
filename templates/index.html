@@ -20,14 +20,14 @@
                  id="df_name" 
                  name="df_name" 
                  placeholder="df_name" 
-                 text="{% if sv_df_name %}{{ sv_df_name }}{% endif %}">
+                 value="{% if sv_df_name %}{{ sv_df_name }}{% endif %}">
           の列名
           <input type="text" 
                  class="form-control" 
                  id="df_column" 
                  name="df_column" 
                  placeholder="column_name" 
-                 text="{% if sv_column_name %}{{ sv_column_name }}{% endif %}">
+                 value="{% if sv_column_name %}{{ sv_column_name }}{% endif %}">
           を
           <select name="df_sort" size="1">
           <option value="0">昇順</option>
@@ -37,10 +37,6 @@
           <button type="submit" class="btn btn-default">Coder</button>
         </form>
         {{ ret_code }}
-        {% if sv_df_name %}{{ sv_df_name }}{% endif %}
-        {% if sv_column_name %}{{ sv_column_name }}{% endif %}
-        {{ sv_df_name }}
-        {{ sv_column_name }}
       </div>
     </div>
   </div>
