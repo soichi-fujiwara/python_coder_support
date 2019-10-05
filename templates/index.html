@@ -30,8 +30,8 @@
                  value="{% if sv_column_name %}{{ sv_column_name }}{% endif %}">
           を
           <select name="df_sort" size="1">
-          <option value="0" {% if sv_df_sort == "0" %}selected{% endif %}>昇順</option>
-          <option value="1" {% if sv_df_sort == "1" %}selected{% endif %}>降順</option>
+          <option value="0" {% if sv_sort_jun == "0" %}selected{% endif %}>昇順</option>
+          <option value="1" {% if sv_sort_jun == "1" %}selected{% endif %}>降順</option>
           </select>
           に並び替える。
           <button type="submit" class="btn btn-default">Coder</button>
