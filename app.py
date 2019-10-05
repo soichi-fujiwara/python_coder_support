@@ -45,7 +45,13 @@ def index():
     ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,sort_val)
                 
     return render_template('index.html',
-                           message=message,name=name, title=title,sv_df_name=df_name,sv_column_name=p_sort_col1,ret_code=ret_code)
+                           message=message,
+                           name=name,
+                           title=title,
+                           sv_df_name=df_name,
+                           sv_column_name=p_sort_col1,
+                           sv_sort_jun=p_sort_jun1,
+                           ret_code=ret_code)
   else:
     return render_template('index.html',
                            message=message, title=title)
