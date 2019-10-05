@@ -20,7 +20,7 @@
                  id="df_name" 
                  name="df_name" 
                  placeholder="df_name" 
-                 >
+                 value="{% if sv_df_name %}{{ sv_df_name }}{% endif %}">
           の列名
           <input type="text" 
                  class="form-control" 
@@ -36,8 +36,10 @@
           に並び替える。
           <button type="submit" class="btn btn-default">Coder</button>
         </form>
+        <textarea> 
         {{ ret_code }} 
-      </div>
+        </textarea>
+       </div>
     </div>
   </div>
 </div>
