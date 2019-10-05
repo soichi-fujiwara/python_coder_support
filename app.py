@@ -16,45 +16,39 @@ def picked_up():
     return np.random.choice(messages)
 
 # Routing
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
-    title = "ようこそ！"
-    message = picked_up()
+
+  ret_code = ""
+  sv_df_name = ""
+  sv_column_name = ""
+        
+  title = "ようこそ！"
+  message = picked_up()
+
+  if request.method == 'POST':
+
+    name = "名前"
+
+    df_name = request.form['df_name']
+
+    p_sort_col1 = request.form['df_column']
+    p_sort_jun1 = request.form['df_sort']
+
+    #0:昇順/1:降順
+    #sort_val = p_sort_jun1
+    if p_sort_jun1 == "0": 
+      sort_val = "True"
+    else:
+      sort_val = "False"
+            
+    ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,sort_val)
+                
+    return render_template('index.html',
+                           message=message,name=name, title=title,sv_df_name=df_name,sv_column_name=p_sort_col1,ret_code=ret_code)
+  else:
     return render_template('index.html',
                            message=message, title=title)
-
-@app.route('/post', methods=['POST', 'GET'])
-def post():
-    title = "こんにちは！"
-    
-    if request.method == 'POST':
-
-        name = "名前"
-
-        ret_code = ""
-        sv_df_name = ""
-        sv_column_name = ""
-        
-        df_name = request.form['df_name']
-
-        p_sort_col1 = request.form['df_column']
-        p_sort_jun1 = request.form['df_sort']
-
-        #0:昇順/1:降順
-        #sort_val = p_sort_jun1
-        if p_sort_jun1 == "0": 
-          sort_val = "True"
-        else:
-          sort_val = "False"
-            
-        ret_code = "df_sort = {}.sort_values('{}', ascending={})".format(df_name,p_sort_col1,sort_val)
-                
-        #TEST------------------------------------------------------------
-        return render_template('index.html',
-                               name=name, title=title,sv_df_name=df_name,sv_column_name=p_sort_col1,ret_code=ret_code)
-        #TEST------------------------------------------------------------
-    else:
-        return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.debug = True
